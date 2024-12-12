@@ -3,10 +3,15 @@ import "./App.css";
 
 function App() {
   const [greetingText, setGreetingText] = useState("");
+  const [inputGreeting, setInputGreeting] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    setGreetingText(event.target.greeting.value);
+    setGreetingText(inputGreeting);
+    const data = {
+      greetingText: inputGreeting
+    };
+    //alert(JSON.stringify(data));
 
   }
   return (
@@ -20,8 +25,10 @@ function App() {
         <label htmlFor="greeting-message">New Greeting Message</label>
         <input 
           id="greeting-message" 
-          name="greeting"
-          type="text" />
+          type="text"
+          value={inputGreeting}
+          onChange={(event) => setInputGreeting(event.target.value)}
+          />
       </div>
 
       <div className="buttons">
